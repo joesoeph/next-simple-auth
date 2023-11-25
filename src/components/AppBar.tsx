@@ -2,10 +2,12 @@
 
 import LogInButton from '@/components/LogInButton';
 import { useSession } from '@/components/SessionProvider';
+import { useIsClient } from '@/lib/isClient';
 import Link from 'next/link';
 
 export default function AppBar() {
   const { isAuthenticated } = useSession();
+  const isClient = useIsClient();
 
   return (
     <div className="flex justify-between p-4 bg-white border-zinc-200 shadow-md border-2">
@@ -14,7 +16,7 @@ export default function AppBar() {
           Anyone Page
         </Link>
 
-        {isAuthenticated && (
+        {isClient && isAuthenticated && (
           <Link href="/dashboard" className="link link-hover block">
             Dashboard Page
           </Link>
