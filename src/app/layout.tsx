@@ -1,4 +1,5 @@
 import AppBar from '@/components/AppBar';
+import SessionProvider from '@/components/SessionProvider';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
@@ -18,8 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AppBar />
-        <div className="container mx-auto mt-4">{children}</div>
+        <SessionProvider>
+          <AppBar />
+          <div className="container mx-auto mt-4">{children}</div>
+        </SessionProvider>
       </body>
     </html>
   );

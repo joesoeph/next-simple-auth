@@ -23,6 +23,7 @@ export default async function loginServerAction(prevState, formData) {
   const bodyPayload = await response.json();
 
   if (!response.ok) {
+    console.log(bodyPayload);
     return bodyPayload;
   }
 
