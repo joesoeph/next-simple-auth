@@ -1,12 +1,14 @@
-import { getSession } from '@/lib/getSession';
+'use client';
+
+import { useSession } from '@/components/SessionProvider';
 import Link from 'next/link';
 
 export default function LogInButton() {
-  const { userInfo, isAuthenticated } = getSession();
+  const { isAuthenticated, userInfo } = useSession();
   return (
     <>
       <div className="flex gap-4 items-center">
-        {isAuthenticated && (
+        {isAuthenticated ? (
           <>
             <div className="avatar">
               <div className="w-10 rounded-full">
@@ -16,12 +18,16 @@ export default function LogInButton() {
             <p className="text-sm">{userInfo.name}</p>
             <button className="link link-hover ml-4">Log Out</button>
           </>
+        ) : (
+          <></>
         )}
 
-        {!isAuthenticated && (
+        {!isAuthenticated ? (
           <Link href="/" className="link link-hover">
             Log In
           </Link>
+        ) : (
+          <></>
         )}
       </div>
     </>
